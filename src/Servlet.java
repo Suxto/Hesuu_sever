@@ -5,9 +5,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Writer;
+import java.util.*;
 
 @WebServlet(name = "Servlet", urlPatterns = "/Servlet")
 public class Servlet extends HttpServlet {
+    HashMap<String, location> mp = new HashMap<>();
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
         //设置响应头允许ajax跨域访问
@@ -16,11 +19,38 @@ public class Servlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Methods", "GET,POST");
         //获取微信小程序传递的参数值并打印
         String transInfo = request.getParameter("transInfo");
-        System.out.println("接收到小程序端传递的数据:" + transInfo);
+
+        String pre = transInfo.substring(0, 3), val = transInfo.substring(3);
+        //System.out.println(pre+' '+val);
+        if (pre.equals("chk")) {
+            if (mp.get(val) == null) {
+                Writer out = response.getWriter();
+                out.write("nope");
+                out.flush();
+            } else {
+                Writer out = response.getWriter();
+                StringBuilder sb = new StringBuilder();
+                location loo = mp.get(val);
+                sb.append(loo.strLa).append(',').append(loo.strLo).append(',').append(loo.nowLa).append(',').append(loo.nowLo);
+                sb.append(',').append(loo.sum);
+                out.write(sb.toString());
+                out.flush();
+            }
+        } else {
+            if (mp.get(val) == null) {
+                location loc = new location();
+
+            } else {
+                Writer out = response.getWriter();
+                out.write("change");
+                out.flush();
+            }
+        }
+        System.out.println("In:" + transInfo);
         //向小程序端传递数据
-        Writer out = response.getWriter();
-        out.write("后台给小程序端的数据");
-        out.flush();
+//        Writer out = response.getWriter();
+//        out.write("后台给小程序端的数据");
+//        out.flush();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

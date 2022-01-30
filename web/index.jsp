@@ -10,6 +10,7 @@
   <head>
     <title>$Title$</title>
   </head>
+  <h1>It`s a stupid sever</h1>
   <body>
   $END$
   </body>
