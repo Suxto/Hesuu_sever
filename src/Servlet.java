@@ -36,13 +36,31 @@ public class Servlet extends HttpServlet {
                 out.write(sb.toString());
                 out.flush();
             }
-        } else {
+        } else if (pre.equals("crt")) {
             if (mp.get(val) == null) {
-                location loc = new location();
-
+                Writer out = response.getWriter();
+                out.write("good");
+                out.flush();
             } else {
                 Writer out = response.getWriter();
                 out.write("change");
+                out.flush();
+            }
+        } else if (pre.equals("sur")) {
+            if (mp.get(val) != null) {
+                Writer out = response.getWriter();
+                out.write("nope");
+                out.flush();
+            } else {
+                String[] s = {};
+                s = val.split(",");
+                location loc = new location();
+                loc.nowLa = loc.strLa = s[1];
+                loc.nowLo = loc.strLo = s[2];
+                loc.sum = 0;
+                mp.put(s[0], loc);
+                Writer out = response.getWriter();
+                out.write("success");
                 out.flush();
             }
         }

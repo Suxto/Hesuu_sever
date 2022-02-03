@@ -1,3 +1,4 @@
 public class location {
-    int strLo, strLa, sum, nowLo, nowLa;
+    String strLo, strLa, nowLo, nowLa;
+    int sum;
 }
