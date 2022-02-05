@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Hesuu_sever:war">
+    <output-path>$PROJECT_DIR$/out/artifacts/Hesuu_sever_war</output-path>
+    <root id="archive" name="Hesuu_sever_war.war">
+      <element id="artifact" artifact-name="Hesuu_sever:war exploded" />
+    </root>
+  </artifact>
+</component>

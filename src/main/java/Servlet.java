@@ -32,7 +32,7 @@ public class Servlet extends HttpServlet {
                 StringBuilder sb = new StringBuilder();
                 location loo = mp.get(val);
                 sb.append(loo.strLa).append(',').append(loo.strLo).append(',').append(loo.nowLa).append(',').append(loo.nowLo);
-                sb.append(',').append(loo.sum);
+                sb.append(',').append(loo.sum).append(',').append(loo.done);
                 out.write(sb.toString());
                 out.flush();
             }
@@ -63,6 +63,16 @@ public class Servlet extends HttpServlet {
                 out.write("success");
                 out.flush();
             }
+        } else if (pre.equals("add")) {
+            Writer out = response.getWriter();
+            out.write("added");
+            out.flush();
+            mp.get(val).sum++;
+        } else if (pre.equals("don")) {
+            Writer out = response.getWriter();
+            out.write("done");
+            out.flush();
+            mp.get(val).done++;
         }
         System.out.println("In:" + transInfo);
         //向小程序端传递数据
