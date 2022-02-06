@@ -52,7 +52,7 @@ public class Servlet extends HttpServlet {
                 out.write("nope");
                 out.flush();
             } else {
-                String[] s = {};
+                String[] s;
                 s = val.split(",");
                 location loc = new location();
                 loc.nowLa = loc.strLa = s[1];
@@ -67,6 +67,10 @@ public class Servlet extends HttpServlet {
             Writer out = response.getWriter();
             out.write("added");
             out.flush();
+            String[] s;
+            s = val.split(",");
+            mp.get(s[0]).nowLa=s[1];
+            mp.get(s[0]).nowLo=s[2];
             mp.get(val).sum++;
         } else if (pre.equals("don")) {
             Writer out = response.getWriter();

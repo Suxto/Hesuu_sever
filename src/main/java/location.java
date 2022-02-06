@@ -1,4 +1,4 @@
 public class location {
     String strLo, strLa, nowLo, nowLa;
-    int sum;
+    int sum=0, done=0;
 }
